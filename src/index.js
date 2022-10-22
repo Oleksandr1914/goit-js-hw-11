@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-getEl = x => document.querySelector(x);
+const getEl = x => document.querySelector(x);
 let numberPage = 1;
 let inputVal;
 
