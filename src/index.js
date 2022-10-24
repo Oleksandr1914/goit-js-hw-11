@@ -126,9 +126,8 @@ async function onClick() {
       calcCard += hits.length;
       if (calcCard === totalHits) {
         getEl('.load-more').classList.add('is-hidden');
-      } else {
-        Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
       }
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
 
       return hits;
     }
