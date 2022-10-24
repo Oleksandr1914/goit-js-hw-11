@@ -42,7 +42,7 @@ async function onSubmitForm(event) {
           </div>
           `;
       })
-      .join(',');
+      .join(' ');
     const addMarkup = await getDataOnRequest();
     const addClsIsHid = await getEl('.load-more').classList.remove('is-hidden');
     function getDataOnRequest() {
@@ -77,14 +77,6 @@ async function onSubmitForm(event) {
 }
 
 async function onClick() {
-  const { height: cardHeight } = document
-    .querySelector('.gallery')
-    .firstElementChild.getBoundingClientRect();
-
-  window.scrollBy({
-    top: -cardHeight * 20,
-    behavior: 'smooth',
-  });
   try {
     numberPage += 1;
     const getData = await axios.get(
@@ -112,10 +104,10 @@ async function onClick() {
           </div>
           `;
       })
-      .join(',');
+      .join(' ');
     const addMarkup = await getDataOnRequest();
     function getDataOnRequest() {
-      return (getEl('.gallery').innerHTML = drawCard);
+      return getEl('.gallery').insertAdjacentHTML('beforeend', drawCard);
     }
     function onArrObj(response) {
       const {
@@ -129,8 +121,17 @@ async function onClick() {
       } else {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
       }
+
       return hits;
     }
+    const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight,
+      behavior: 'smooth',
+    });
     getEl('.gallery').addEventListener('click', modalImg);
     return addMarkup;
   } catch {
