@@ -118,13 +118,10 @@ async function onClick() {
     function onArrObj(response) {
       const {
         data: { hits, totalHits },
+        status,
       } = response;
-      // if (hits.length < 1) {
-      // Notiflix.Notify.warning(
-      //   'Sorry, there are no images matching your search query. Please try again.'
-      // );
       calcCard += hits.length;
-      if (calcCard === totalHits) {
+      if (calcCard >= totalHits) {
         getEl('.load-more').classList.add('is-hidden');
       }
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`);
